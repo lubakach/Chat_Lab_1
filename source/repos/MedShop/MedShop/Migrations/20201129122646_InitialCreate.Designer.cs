@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedShop.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    [Migration("20201127000305_ShopCartt")]
-    partial class ShopCartt
+    [Migration("20201129122646_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,6 +77,71 @@ namespace MedShop.Migrations
                     b.ToTable("Medicine");
                 });
 
+            modelBuilder.Entity("MedShop.Models.Order", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("adress")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(23)
+                        .HasColumnType("nvarchar(23)");
+
+                    b.Property<DateTime>("orderTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("phone")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("surname")
+                        .IsRequired()
+                        .HasMaxLength(33)
+                        .HasColumnType("nvarchar(33)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("MedShop.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("MedicineID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("orderID")
+                        .HasColumnType("int");
+
+                    b.Property<long>("price")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("MedicineID");
+
+                    b.HasIndex("orderID");
+
+                    b.ToTable("OrderDetail");
+                });
+
             modelBuilder.Entity("MedShop.Models.ShopCartItem", b =>
                 {
                     b.Property<int>("Id")
@@ -111,6 +176,25 @@ namespace MedShop.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("MedShop.Models.OrderDetail", b =>
+                {
+                    b.HasOne("MedShop.Models.Medicine", "medicine")
+                        .WithMany()
+                        .HasForeignKey("MedicineID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MedShop.Models.Order", "order")
+                        .WithMany("orderDetails")
+                        .HasForeignKey("orderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("medicine");
+
+                    b.Navigation("order");
+                });
+
             modelBuilder.Entity("MedShop.Models.ShopCartItem", b =>
                 {
                     b.HasOne("MedShop.Models.Medicine", "medicine")
@@ -123,6 +207,11 @@ namespace MedShop.Migrations
             modelBuilder.Entity("MedShop.Models.Category", b =>
                 {
                     b.Navigation("medicines");
+                });
+
+            modelBuilder.Entity("MedShop.Models.Order", b =>
+                {
+                    b.Navigation("orderDetails");
                 });
 #pragma warning restore 612, 618
         }

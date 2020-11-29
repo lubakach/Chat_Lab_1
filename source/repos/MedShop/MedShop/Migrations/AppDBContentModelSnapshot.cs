@@ -83,22 +83,32 @@ namespace MedShop.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("adress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("dateTime")
-                        .HasColumnType("datetime2");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("email")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(23)
+                        .HasColumnType("nvarchar(23)");
+
+                    b.Property<DateTime>("orderTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("phone")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("surname")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(33)
+                        .HasColumnType("nvarchar(33)");
 
                     b.HasKey("id");
 
