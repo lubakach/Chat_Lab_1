@@ -1,0 +1,13 @@
+﻿@model HomeViewModel
+
+<h1>Любимые товары</h1>
+<div class="row mt-5 mb-2">
+    @{
+        foreach (Medicine medicine in Model.favMeds)
+        {
+            @Html.Partial("AllMedicines", medicine)
+        }
+
+
+    }
+</div>

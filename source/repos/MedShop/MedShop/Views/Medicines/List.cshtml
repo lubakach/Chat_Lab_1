@@ -1,0 +1,14 @@
+﻿
+<h2>Все товары</h2>
+<h3>@Model.currCategory</h3>
+<div class="row mt-5 mb-2">
+    @{
+        foreach (Medicine medicine in Model.allMedicines)
+        {
+            @Html.Partial("AllMedicines", medicine)
+        }
+
+
+    }
+</div>
+
