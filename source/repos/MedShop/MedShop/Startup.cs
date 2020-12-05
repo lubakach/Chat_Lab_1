@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using MedShop.Repository;
 using MedShop.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MedShop
 {
@@ -27,27 +28,33 @@ namespace MedShop
             _confSting = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
             Configuration = configuration;
         }
-       /* public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }*/
+       
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+           
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confSting.GetConnectionString("AzureConnection")));
             services.AddControllersWithViews();
             services.AddTransient<IAllMedicines, MedicineRepository>();
             services.AddTransient<IMedicinesCategory, CategoryRepository>();
             services.AddTransient<IAllOrders, OrdersRepository>();
-
+           
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => ShopCart.GetCart(sp));
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddMemoryCache();
             services.AddSession();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
+            services.AddControllersWithViews();
+
 
         }
 
@@ -57,7 +64,10 @@ namespace MedShop
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseRouting();
             app.UseSession();
+            app.UseAuthentication(); 
+            app.UseAuthorization();
             app.UseMvc(routes => {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(name: "categoryFilter", template: "Medicine/{action}/{category?}", defaults: new { Controller = "Medicine", action = "List" });

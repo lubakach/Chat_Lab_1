@@ -19,19 +19,23 @@ namespace MedShop.Repository
         {
             order.orderTime = DateTime.Now;
             appDBContent.Order.Add(order);
+            appDBContent.SaveChanges();
+
             var items = shopCart.listShopItems;
+
             foreach (var el in items) {
                 var orderDetail = new OrderDetail()
                 {
-                    MedicineID = el.medicine.id,
                     orderID = order.id,
+                    MedicineID = el.medicine.id,
                     price = el.medicine.price
                 };
                 appDBContent.OrderDetail.Add(orderDetail);
+                
             }
+
             appDBContent.SaveChanges();
 
-     
         }
     }
 }

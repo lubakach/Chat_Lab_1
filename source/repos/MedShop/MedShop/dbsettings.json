@@ -1,6 +1,15 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=MedShop;Trusted_Connection=True;MultipleActiveResultSets=true",
-    "AzureConnection":  "Server=tcp:medshop.database.windows.net,1433;Database=coreDB;User ID=lubakach;Password=26021982Luba;Encrypt=true;Connection Timeout=30;"
-  }
+    "DefaultConnections": "Server=(localdb)\\MSSQLLocalDB;Database=MedShop;Trusted_Connection=True;MultipleActiveResultSets=true",
+    "AzureConnection": "Server=tcp:medshop.database.windows.net,1433;Database=coreDB;User ID=lubakach;Password=26021982Luba;Encrypt=true;Connection Timeout=30;"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
 }
+

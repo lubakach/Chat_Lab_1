@@ -19,21 +19,33 @@ namespace MedShop.Controllers
         }
 
         public IActionResult Checkout() {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else return RedirectToAction("AuthoError");
         }
-
         [HttpPost]
         public IActionResult Checkout(Order order)
         {
-            shopCart.listShopItems = shopCart.getShopItems();
-            if (shopCart.listShopItems.Count == 0) {
-                ModelState.AddModelError("", "У вас должны быть товары!");
-            }
-            if (ModelState.IsValid) {
-                allOrders.createOrder(order);
-                return RedirectToAction("Complete");
-            }
-            return View(order);
+            
+                shopCart.listShopItems = shopCart.getShopItems();
+                if (shopCart.listShopItems.Count == 0)
+                {
+                    ModelState.AddModelError("", "У вас должны быть товары!");
+                }
+                if (ModelState.IsValid)
+                {
+                    allOrders.createOrder(order);
+                    return RedirectToAction("Complete");
+                }
+                return View(order);
+           
+        }
+        public IActionResult AuthoError()
+        {
+            ViewBag.Message = "Заказы принимаются только от зарегестрированных пользователей!";
+            return View();
         }
         public IActionResult Complete() {
             ViewBag.Message = "Заказ успешно обработан!";
