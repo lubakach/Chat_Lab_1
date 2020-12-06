@@ -27,13 +27,13 @@ namespace MedShop.Models
         public string adress { get; set; }
 
         [Display(Name = "Номер телефона")]
-        [StringLength(10)]
+        [StringLength(20)]
         [DataType(DataType.PhoneNumber)]
         [Required(ErrorMessage = "Длина номера не менее 10 символов")]
         public string phone { get; set; }
 
         [Display(Name = "Email")]
-        [StringLength(15)]
+        [StringLength(30)]
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Длина email не менее 15 символов")]
         public string email { get; set; }

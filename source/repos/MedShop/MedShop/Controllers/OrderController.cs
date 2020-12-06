@@ -25,6 +25,7 @@ namespace MedShop.Controllers
         }
 
         public IActionResult Checkout() {
+            return View();
             if (User.Identity.IsAuthenticated)
             {
                 return View();
@@ -36,23 +37,26 @@ namespace MedShop.Controllers
         {
             
                 shopCart.listShopItems = shopCart.getShopItems();
-                if (shopCart.listShopItems.Count == 0)
-                {
-                    ModelState.AddModelError("", "У вас должны быть товары!");
-                }
                 if (ModelState.IsValid)
                 {
                     allOrders.createOrder(order);
                     service.SendEmailDefault();
                     return RedirectToAction("Complete");
                 }
-                return View(order);
-           
+                else
+                return RedirectToAction("Error");
+            
+            
+
         }
-        
+        public IActionResult Error()
+        {
+            ViewBag.Message = "Упс! Вы не добавили товары в корзину!";
+            return View();
+        }
         public IActionResult AuthoError()
         {
-            ViewBag.Message = "Заказы принимаются только от зарегестрированных пользователей!";
+            ViewBag.Message = "Заказы принимаются только от зарегистрированных пользователей!";
             return View();
         }
         public IActionResult Complete() {

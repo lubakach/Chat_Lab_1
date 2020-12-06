@@ -26,22 +26,36 @@ namespace MedShop.Controllers
         {
             return View();
         }
+        public IActionResult CheckAuthor()
+        {
+            
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Info");
+            }
+            else return RedirectToAction("Login");
+
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            if (ModelState.IsValid)
-            {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
-                if (user != null)
+            
+            
+                if (ModelState.IsValid)
                 {
-                    await Authenticate(model.Email); // аутентификация
+                    User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                    if (user != null)
+                    {
+                        await Authenticate(model.Email);
 
-                    return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home");
+                    }
+                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
                 }
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-            }
-            return View(model);
+                return View(model);
+            
         }
         [HttpGet]
         public IActionResult Register()
@@ -84,10 +98,18 @@ namespace MedShop.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
 
+        public IActionResult Info()
+        {
+            ViewBag.Message = "Поздравляю! Вы в системе.";
+            return View();
+
+        }
+
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Account");
+       
         }
     }
 }
