@@ -51,6 +51,7 @@ namespace MedShop.Controllers
             if (ModelState.IsValid)
             {
                 allOrders.createOrder(order);
+                service.SendEmailDefault(order.email, order.name, order.surname);
                 return RedirectToAction("Complete");
             }
             return View(order);
@@ -66,7 +67,7 @@ namespace MedShop.Controllers
             return View();
         }
         public IActionResult Complete() {
-            ViewBag.Message = "Закакз успешно обработан! Детали заказа и дополнительньная информация отправлена на вашу электронную почту!";
+            ViewBag.Message = "Заказ успешно обработан! Детали заказа и дополнительньная информация отправлена на вашу электронную почту!";
             return View();
         }
     }

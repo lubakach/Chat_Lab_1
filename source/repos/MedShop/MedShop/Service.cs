@@ -15,16 +15,17 @@ namespace MedShop
         {
             this.logger = logger;
         }
-        public void SendEmailDefault()
+        
+        public void SendEmailDefault(String mail, string name, string surname)
         {
             try
             {
                 MailMessage message = new MailMessage();
                 message.IsBodyHtml = true;
                 message.From = new MailAddress("admin@mycompany.com", "Интернет-магазин MedShopBY");
-                message.To.Add("lubakach26@gmail.com");
+                message.To.Add(mail);
                 message.Subject = "Сообщение от System.Net.Mail";
-                message.Body = "<div style=\"color: black;\">Благодарим вас за заказ в нашем интернет-магазине. Будем рады видеть вас еще.<br></br> <br>Доставка товара осуществляется с 18.00-23.00 каждый день, без выходных.</br> <br> Курьер позвонит вам за 30 минут до прибытия.</br> <br></br><br>Ваш MedShopBY.</br> </div>";
+                message.Body = "<div style=\"color: black;\"><br>Здравствуйте " + name + " " + surname + "<br></br><br>Благодарим вас за заказ в нашем интернет-магазине. Будем рады видеть вас еще.<br></br> <br>Доставка товара осуществляется с 18.00-23.00 каждый день, без выходных.</br> <br> Курьер позвонит вам за 30 минут до прибытия.</br> <br></br><br>Ваш MedShopBY.</br> </div>";
                 //message.Attachments.Add(new Attachment("... путь к файлу ..."));
 
                 using (SmtpClient client = new SmtpClient("smtp.gmail.com"))

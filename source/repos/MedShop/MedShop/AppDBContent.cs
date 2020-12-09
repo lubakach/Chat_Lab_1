@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace MedShop{
     public class AppDBContent:DbContext
     {
-        public AppDBContent(DbContextOptions<AppDBContent> options) : base(options) { 
+        public AppDBContent(DbContextOptions<AppDBContent> options) : base(options) {
+            //Database.EnsureCreated();
         }
         public DbSet<Medicine> Medicine { get; set; }
         public DbSet<Category> Category { get; set; }
