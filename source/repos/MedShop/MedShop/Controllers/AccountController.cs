@@ -17,9 +17,11 @@ namespace MedShop.Controllers
     public class AccountController : Controller
     {
         private AppDBContent db;
-        public AccountController(AppDBContent context)
+        private readonly Service service;
+        public AccountController(AppDBContent context, Service service)
         {
             db = context;
+            this.service = service;
         }
         [HttpGet]
         public IActionResult Login()
@@ -62,16 +64,20 @@ namespace MedShop.Controllers
         {
             return View();
         }
+        
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model)
         {
+            
+
             if (ModelState.IsValid)
             {
                 User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
-                    // добавляем пользователя в бд
+                    // добавляем пользователя
                     db.Users.Add(new User { Email = model.Email, Password = model.Password });
                     await db.SaveChangesAsync();
 

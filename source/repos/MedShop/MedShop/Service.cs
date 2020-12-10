@@ -15,7 +15,34 @@ namespace MedShop
         {
             this.logger = logger;
         }
-        
+
+        public void SendEmailRegister(String mail)
+        {
+            try
+            {
+                MailMessage message = new MailMessage();
+                message.IsBodyHtml = true;
+                message.From = new MailAddress("admin@mycompany.com", "Интернет-магазин MedShopBY");
+                message.To.Add(mail);
+                message.Subject = "Сообщение от System.Net.Mail";
+                message.Body = "Код для регистрации 1111";
+                //message.Attachments.Add(new Attachment("... путь к файлу ..."));
+
+                using (SmtpClient client = new SmtpClient("smtp.gmail.com"))
+                {
+                    client.Credentials = new NetworkCredential("medicineshopby@gmail.com", "26021982Luba");
+                    client.Port = 587; //порт 587 либо 465
+                    client.EnableSsl = true;
+
+                    client.Send(message);
+                    logger.LogInformation("Сообщение отправлено успешно!");
+                }
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.GetBaseException().Message);
+            }
+        }
         public void SendEmailDefault(String mail, string name, string surname)
         {
             try

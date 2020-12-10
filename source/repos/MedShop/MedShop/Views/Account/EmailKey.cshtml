@@ -1,0 +1,19 @@
+﻿@model MedShop.ViewModels.RegisterModel
+
+<h2>Подтверждение пароля</h2>
+
+<form asp-action="EmailKey" asp-controller="Account" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+
+        <div>
+            <label asp-for="Key">Введите код подтверждения</label><br />
+            <input asp-for="Key" />
+            <span asp-validation-for="Key" />
+        </div>
+
+        <div>
+            <input type="submit" value="Регистрация" onClick='location.href="/Medicines/List"' />
+        </div>
+    </div>
+</form>
