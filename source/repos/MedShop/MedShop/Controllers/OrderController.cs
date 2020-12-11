@@ -25,7 +25,9 @@ namespace MedShop.Controllers
         }
 
         public IActionResult Checkout() {
+
             shopCart.listShopItems = shopCart.getShopItems();
+
             
             if (shopCart.listShopItems.Count == 0) {
                 return RedirectToAction("Error");
@@ -61,6 +63,7 @@ namespace MedShop.Controllers
             ViewBag.Message = "Упс! Вы не добавили товары в корзину!";
             return View();
         }
+        
         public IActionResult AuthoError()
         {
             ViewBag.Message = "Заказы принимаются только от зарегистрированных пользователей!";

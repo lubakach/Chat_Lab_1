@@ -82,6 +82,18 @@ namespace MedShop
                         price = 3,
                         available = true,
                         Category = Categories["Медикаменты"]
+                    },
+                    new User
+                    {
+                        Email = "lubakach26@gmail.com",
+                        Password = "lubakach",
+                        Admin = "User"
+                    },
+                    new User
+                    { 
+                        Email="medicineshopby@gmail.com",
+                        Password="medicineshopby",
+                        Admin= "Admin"
                     }
              
                  );

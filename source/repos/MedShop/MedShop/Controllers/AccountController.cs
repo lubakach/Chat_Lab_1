@@ -10,7 +10,7 @@ using MedShop.ViewModels;
 using MedShop.Models; 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedShop.Controllers
 {
@@ -30,10 +30,13 @@ namespace MedShop.Controllers
         }
         public IActionResult CheckAuthor()
         {
-            
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("User"))
             {
                 return RedirectToAction("Info");
+            }
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("AdminPage");
             }
             else return RedirectToAction("Login");
 
@@ -50,9 +53,10 @@ namespace MedShop.Controllers
                     User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
                     if (user != null)
                     {
-                        await Authenticate(model.Email);
-
+                        await Authenticate(model.Email, user.Admin);
+                        
                         return RedirectToAction("Index", "Home");
+                        
                     }
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
                 }
@@ -78,10 +82,10 @@ namespace MedShop.Controllers
                 if (user == null)
                 {
                     // добавляем пользователя
-                    db.Users.Add(new User { Email = model.Email, Password = model.Password });
+                    db.Users.Add(new User { Email = model.Email, Password = model.Password, Admin="User"});
                     await db.SaveChangesAsync();
 
-                    await Authenticate(model.Email); // аутентификация
+                    await Authenticate(model.Email, "User"); // аутентификация
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -91,26 +95,34 @@ namespace MedShop.Controllers
             return View(model);
         }
 
-        private async Task Authenticate(string userName)
+      
+        private async Task Authenticate(string UserName, string Role)
         {
             // создаем один claim
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+               new Claim(ClaimsIdentity.DefaultNameClaimType, UserName),
+               new Claim(ClaimsIdentity.DefaultRoleClaimType, Role)
             };
             // создаем объект ClaimsIdentity
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
-
+        
         public IActionResult Info()
         {
             ViewBag.Message = "Поздравляю! Вы в системе.";
             return View();
 
         }
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminPage()
+        {
+            ViewBag.Message = "Аккаунт работает в режиме 'Админ'";
+            return View();
 
+        }
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

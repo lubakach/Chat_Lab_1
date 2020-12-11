@@ -2,6 +2,7 @@
 using MedShop.Models;
 using MedShop.Repository;
 using MedShop.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,18 @@ namespace MedShop.Controllers
             _shopCart = shopCart;
         }
 
-        public ViewResult Index() {
-            var items = _shopCart.getShopItems();
-            _shopCart.listShopItems = items;
-            var obj = new ShopCartViewModel
+        public IActionResult Index() {
+            if (User.IsInRole("Admin")) { return RedirectToAction("AdminInfo"); }
+            else
             {
-                shopCart = _shopCart
-            };
-            return View(obj);
+                var items = _shopCart.getShopItems();
+                _shopCart.listShopItems = items;
+                var obj = new ShopCartViewModel
+                {
+                    shopCart = _shopCart
+                };
+                return View(obj);
+            }
         }
 
         public RedirectToActionResult addToCart(int id) {
@@ -36,6 +41,12 @@ namespace MedShop.Controllers
                 _shopCart.AddToCart(item);
             }
             return RedirectToAction("Index");
+        }
+        [Authorize(Roles = "Admin")]
+        public IActionResult AdminInfo()
+        {
+            ViewBag.Message = "Информация для администрации";
+            return View();
         }
     }
 }
