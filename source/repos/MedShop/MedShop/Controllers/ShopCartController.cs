@@ -13,6 +13,7 @@ namespace MedShop.Controllers
 {
     public class ShopCartController : Controller
     {
+        //private IAllOrders _order;
         private IAllMedicines _medRep;
         private readonly ShopCart _shopCart;
 
@@ -34,7 +35,7 @@ namespace MedShop.Controllers
                 return View(obj);
             }
         }
-
+        
         public RedirectToActionResult addToCart(int id) {
             var item = _medRep.Medicines.FirstOrDefault(i => i.id == id);
             if (item != null) {

@@ -1,5 +1,6 @@
 ﻿using MedShop.Interfaces;
 using MedShop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -43,6 +44,7 @@ namespace MedShop.Controllers
             else return View();
         }
         [HttpPost]
+        //[Authorize(Roles = "User")]
         public IActionResult Checkout(Order order)
         {
             shopCart.listShopItems = shopCart.getShopItems();
