@@ -1,0 +1,479 @@
+:root {
+
+    --color-main: #FFF6F1;
+    --color-top: #FBEDE6;
+    --color-font: #4F9B9D;
+    --color-pink: #FFB4B6;
+    --font-family: "Lucida Bright"
+}
+
+i {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 50px;
+    padding: 0 2rem;
+    margin : 0;
+    color: #4F9B9D;
+    display:inline-block
+}
+
+header {
+    height: 9%;
+    padding: 1rem 2rem;
+    background-color: var(--color-main);
+    box-shadow: 0px 10px 10px rgba(10, 0, 0, 0.25);
+    border-radius: 0px 0px 30px 30px;
+    border: 1px solid #FECDCE;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+
+}
+
+header div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+header div div{
+    display: flex;
+    justify-content: flex-end;
+}
+
+header .div-user{
+    align-items: center;
+}
+
+.user {
+    color: var(--color-font);
+    mix-blend-mode: soft-light;
+    opacity: 0.5;
+}
+
+.div-user .iconify{
+    width: 2rem;
+    height: 2rem;
+    background-blend-mode: overlay;
+    mix-blend-mode: soft-light;
+    opacity: 0.5;
+}
+
+body{
+
+    background-image: url(img/web.jpeg);
+    background-size: cover;
+
+
+}
+h2{
+    color: #4F9B9D;
+    font-family: var(--font-family);
+
+    display: flex;
+    box-sizing: border-box;
+    align-content: center;
+    justify-content: center;
+    margin: 0.5rem;
+
+    align-items: center;
+    line-height: 40px;
+    font-size: 1.5rem;
+
+}
+
+label {
+    font-weight: bold;
+    color: #4F9B9D;
+    font-family: var(--font-family);
+
+    display: flex;
+    box-sizing: border-box;
+    margin: 0.5rem;
+
+    align-items: center;
+    line-height: 40px;
+    font-size: 1.5rem;
+}
+header h1{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 50px;
+    padding: 0 10px;
+    margin : 0;
+    color: #4F9B9D;
+    display:inline-block
+}
+
+
+header i{
+    padding: 0 3px;
+}
+
+footer {
+    height: 5%;
+    width: 100%;
+    display: flex;
+    color: #4F9B9D;
+    align-items: center;
+    justify-content: center;
+}
+
+h6 {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+    font-style: normal;
+    line-height: 21px;
+}
+
+.question-card{
+    align-self: center;
+    margin:3rem 10rem;
+    width: 100%;
+    position: relative;
+}
+
+.form-box{
+    width: 100%;
+    padding: 3rem;
+    max-width: 500px;
+}
+
+
+.question-card-open{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    border: 1px solid #FECDCE;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    background-color: var(--color-main);
+}
+
+.question-card-box{
+    height: 88%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+
+.question-open{
+    background: var(--color-top);
+    color: #4F9B9D;
+    border-radius: 30px 30px 0px 0px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+    height: 50%;
+}
+
+
+.answers{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 0 2rem;
+    color: #4F9B9D;
+}
+.passwords{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 0 2rem;
+    color: #4F9B9D;
+}
+
+.answers.create{
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+
+    color: #4F9B9D;
+}
+.option div{
+    display: flex;
+    align-items: center;
+
+}
+.option .input{
+    margin-top:0;
+    width: 100%;
+}
+
+.option .input
+question-card-o
+.pen .answer-open{
+    background: var(--color-main);
+    border-radius: 0px 0px 30px 30px;
+    height: 40%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 0 2rem;
+    color: #4F9B9D;
+}
+
+.question-open h2{
+    font-size: 1.5rem;
+}
+@media(max-width: 450px){
+    .question-open h2{
+        font-size: 1.5rem;
+    }
+}
+
+
+.buttons1{
+    width: 30%;
+}
+
+
+form button {
+
+    background-color: var(--color-main);
+    color: var(--color-font);
+    width: 200px;
+    height: 55px;
+    font-weight: bold;
+    font-size: 25px;
+    font-style: normal;
+    line-height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-family);
+    border: 1px solid #FECDCE;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+
+}
+
+.answers label{
+    font-weight: lighter;
+    font-size: 1.2rem;
+    display: flex;
+    font-family: var(--font-family);
+}
+
+.passwords label{
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    margin: 5% 0;
+    font-family: var(--font-family);
+}
+
+
+.answers{
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    width: 100%;
+    flex-direction: column;
+}
+.passwords{
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    width: 100%;
+    flex-direction: column;
+}
+
+.answers.result{
+    display: flex;
+    align-items: center;
+    width:auto;
+    flex-direction: column;
+}
+.button-right {
+    display: flex;
+    box-sizing: border-box;
+    align-content: space-between;
+    justify-content: flex-end;
+    margin-right: 0rem;
+    margin-bottom: 0.5rem;
+}
+.button-center {
+    display: flex;
+    box-sizing: border-box;
+    align-content: space-between;
+    justify-content: center;
+    margin-right: 0rem;
+    margin-bottom: 0.5rem;
+}
+
+.button-box{
+    display: flex;
+    box-sizing: border-box;
+    align-content: center;
+    justify-content: center;
+    margin: 0.5rem;
+    align-items: center;
+
+
+}
+.button-box h2{
+    color: #4F9B9D;
+    font-family: var(--font-family);
+
+    display: flex;
+    box-sizing: border-box;
+    align-content: center;
+    justify-content: center;
+    margin: 0.5rem;
+
+    align-items: center;
+    line-height: 40px;
+    font-size: 1.5rem;
+}
+.input-right{
+    padding-left: 30px;
+    color: var(--color-font);
+    background-color:white;
+    border-radius: 30px;
+    margin-top: 15px;
+    width: 60px;
+    border: 1px solid #FECDCE;
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+}
+.input{
+    margin-right: 10px;
+    width:100%;
+    color: var(--color-font);
+    background-color:white;
+    border-radius: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #FECDCE;
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+}
+.input:focus {
+    border: 1px solid cornflowerblue;
+}
+.custom-radio {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: inline-flex;
+}
+/* для элемента label связанного с .custom-radio */
+.custom-radio+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+/* создание в label псевдоэлемента  before со следующими стилями */
+.custom-radio+label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #FDFDFD;
+    background: #FDFDFD;
+    border-radius: 50%;
+    margin-right: 3em;
+    box-shadow: -2px -2px 4px rgba(225, 225, 225, 0.25), 2px 2px 4px rgba(109, 109, 109, 0.25);
+}
+/* стили при наведении курсора на радио */
+.custom-radio:not(:disabled):not(:checked)+label:hover::before {
+    border-color: var(--color-main);
+}
+/* стили для активной радиокнопки (при нажатии на неё) */
+.custom-radio:not(:disabled):active+label::before {
+    background-color: var(--color-pink);
+}
+
+/* стили для радиокнопки, находящейся в состоянии checked */
+.custom-radio:checked+label::before {
+    border-color: var(--color-pink);
+    background-color: var(--color-pink);
+}
+/* стили для радиокнопки, находящейся в состоянии disabled */
+.custom-radio:disabled+label::before {
+    background-color: #e9ecef;
+}
+
+
+.input:focus{
+    outline: none;
+}
+.row-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+html, body {
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+@media(max-width: 480px){
+    header h1{
+        font-size: 1.5rem;
+    }
+    .form-box {
+        padding: 0;
+    }
+    .question-card-open {
+        margin: 1rem;
+    }
+    .question-open{
+        width: auto;
+    }
+
+    .answers {
+        width: auto;
+    }
+    .question-card-box {
+        width: 100%;
+    }
+
+    .button-right {
+        margin-right: 1rem;
+    }
+    .custom-radio+label::before {
+        margin-right: 1rem;
+    }
+    .button-box h2{
+        font-size: 1rem;
+    }
+    .input{
+        width: 100%;
+    }
+}
+

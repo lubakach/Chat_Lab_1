@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+</head>
+<body>
+<header>
+    <div>
+        <h1>CandyQuiz</h1>
+        <div>
+            <h1>Best Player:</h1>
+            <a href="#"><i class="far fa-user-circle"></i></a>
+            <a href="#start"><i class="fas fa-home"></i></a>
+        </div>
+    </div>
+</header>
+<div class="question-card-box" id="main">
+</div>
+<footer>
+    <h6>Copyright © 2021 Kachan Lubava. All rights reserved.</h6>
+</footer>
+
+<script type="module" src="index.js"></script>
+<script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
+
+<script type="text/template" id="startTemplate">
+    <div class="question-card-box">
+        <form action="handler.php" class="form-box">
+            <div class="button-box">
+                <button type="button" id="buttonPlay"><h2>Play</h2></span></button>
+            </div>
+            <div class="button-box">
+                <button type="button" id="buttonCreate"><h2>Create Quiz</h2></span></button>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/template" id="menuTemplate">
+    <div class="question-card-box">
+        <form action="handler.php" class="form-box">
+            <div class="question-card-open">
+                <div class="question-open">
+                    <div><label>Games:</label></div>
+                </div>
+                <div class="passwords">
+                    {{#each list}}
+                        <div class="row-container"><label>{{game_name}}</label>
+                            <a href="#question/{{game_id}}">
+                                <i class="fas fa-arrow-circle-right"></i></a></div>
+                    {{/each}}
+                </div>
+            </div>
+
+        </form>
+    </div>
+</script>
+
+<script type="text/template" id="question1Template">
+    <div class="question-card-box">
+        <form action="handler.php" class="form-box" id="questionT">
+            <div class="question-card-open" id="qCard">
+                <div class="question-open">
+                    <h2>Question:<br>{{question}}</h2>
+                </div>
+                <div class="answers">
+                    <div>
+                        <input class="input" id="answer441" name="answer"><Br>
+                    </div>
+                </div>
+            </div>
+            <div class="button-box">
+                <button type="button" id="buttonNextQuestion"><h2>Next</h2></span></button>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/template" id="question4Template">
+    <div class="question-card-box">
+        <form action="handler.php" class="form-box" id="questionT">
+            <div class="question-card-open" id="qCard">
+                <div class="question-open">
+                    <h2>Question:<br>{{question}}</h2>
+                </div>
+                <div class="answers">
+                    <div>
+                        <input type="radio" class="custom-radio" id="answer1" name="answer" value="1">
+                        <label for="answer1">{{answers.[0]}}</label>
+                    </div>
+                    <div>
+                        <input type="radio"  class="custom-radio" id="answer2" name="answer" value="2">
+                        <label for="answer2">{{answers.[1]}}</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="custom-radio" id="answer3" name="answer" value="3">
+                        <label for="answer3">{{answers.[2]}}</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="custom-radio" id="answer4" name="answer" value="4">
+                        <label for="answer4">{{answers.[3]}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="button-box">
+                <button type="button" id="buttonNextQuestion"><h2>Next</h2></span></button>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/template" id="nameGameTemplate">
+    <div class="question-card-box">
+        <form onsubmit="window.location.href=window.location.href+'/new'" class="form-box" id="createGame" >
+            <div class="question-card-open">
+                <div class="question-open">
+                    <div><h2>Name your quiz:<br></h2></div>
+                </div>
+                <div class="answers">
+                    <div>
+                        <input class="input" id="answer1444" name="game_name">
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <h2>Next:</h2>
+            </div>
+            <div class="button-box">
+                <button type="button" id="buttonOpenCreate">Q. Answer</button>
+                <button type="button" id="buttonOptionCreate">Q. Options</button>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/template" id="addQuestionTemplate">
+    <div class="question-card-box">
+        <form action="handler.php" class="form-box" id="createQuestion">
+            <div class="question-card-open" id="CardBox"></div>
+            <div>
+                <h2>Next:<br></h2>
+            </div>
+            <div class="button-box">
+                <button type="button" id="buttonOpenCreate2"><h2>Q. Answer</h2></span></button>
+                <button type="button" id="buttonOptionCreate2"><h2>Q. Options</h2></span></button>
+                <button type="button" id="buttonFinish2"><h2>Finish</h2></span></button>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/template" id="addQuestion1Template">
+        <div class="question-open">
+            <div><h2>Question:<br></h2></div>
+            <div><input class="input" id="answer244" name="question"></div>
+        </div>
+        <div class="answers create">
+            <div><h2>Answer:<br></h2></div>
+            <div>
+                <input class="input" id="answer133" name="answer1"><Br><Br>
+            </div>
+        </div>
+
+</script>
+
+<script type="text/template" id="addQuestion4Template">
+    <div class="question-open">
+        <input class="input" id="answe2" name="question">
+    </div>
+    <div class="answers option">
+        <div>
+            <input type="radio"  class="custom-radio" id="radio1" name="radio1" value="1">
+            <label for="radio1"></label>
+            <input class="input" id="answer11" name="answer1">
+        </div>
+        <div>
+            <input type="radio"  class="custom-radio" id="radio2" name="radio1" value="2">
+            <label for="radio2"></label>
+            <input class="input" id="answer22" name="answer2">
+        </div>
+        <div>
+            <input type="radio"  class="custom-radio" id="radio3" name="radio1" value="3">
+            <label for="radio3"></label>
+            <input class="input" id="answer33" name="answer3">
+        </div>
+        <div>
+            <input type="radio"  class="custom-radio" id="radio4" name="radio1" value="4">
+            <label for="radio4"></label>
+            <input class="input" id="answer44" name="answer4">
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="resultTemplate">
+    <div class="question-card-box">
+        <form action="handler.php" class="form-box">
+            <div class="question-card-open">
+                <div class="question-open">
+                    <div><h2>Leaderboard<br></h2></div>
+                </div>
+                <div class="answers result">
+                    <table>
+                        <tr><td><label>You:</label></td><td><label>{{result}}</label></td></tr>
+                        <tr><td><label>Record:</label></td><td><label>{{overall}}</label></td></tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+
+</body>
+</html>
